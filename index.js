@@ -1,22 +1,38 @@
 function paginaCargada() {
 
+  var animateButton = function (e) {
 
-  let boton = document.getElementById('boton');
-  let areaUsuario = document.getElementById('usuario')
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove('animate');
+
+    e.target.classList.add('animate');
+    setTimeout(function () {
+      e.target.classList.remove('animate');
+    }, 700);
 
 
-
-  boton.addEventListener('click', function () {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    })
     
-    fetch('https://randomuser.me/api/')
-      .then(response => response.json())
-      .then((data)=>{
-        console.log(data)
-        areaUsuario.innerHTML = data.results[0].email
+    Toast.fire({
+      icon: 'warning',
+      title: '¡Hola!'
+    })
+  };
 
-      })
+  var bubblyButtons = document.getElementsByClassName("bubbly-button");
 
-  })
+  for (var i = 0; i < bubblyButtons.length; i++) {
+    bubblyButtons[i].addEventListener('click', animateButton, false);
+  }
+
+  
+
 
 }
 
