@@ -1,35 +1,13 @@
 function paginaCargada() {
 
-  var animateButton = function (e) {
-
-    e.preventDefault;
-    //reset animation
-    e.target.classList.remove('animate');
-
-    e.target.classList.add('animate');
-    setTimeout(function () {
-      e.target.classList.remove('animate');
-    }, 700);
-
-
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    })
-    
-    Toast.fire({
-      icon: 'warning',
-      title: '¡Hola!'
-    })
-  };
-
-  var bubblyButtons = document.getElementsByClassName("bubbly-button");
-
-  for (var i = 0; i < bubblyButtons.length; i++) {
-    bubblyButtons[i].addEventListener('click', animateButton, false);
-  }
+  let btn = document.querySelector('.mouse-cursor-gradient-tracking');
+  btn.addEventListener('mousemove', e => {
+    let rect = e.target.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+    btn.style.setProperty('--x', x + 'px');
+    btn.style.setProperty('--y', y + 'px');
+  });
 
   
 
